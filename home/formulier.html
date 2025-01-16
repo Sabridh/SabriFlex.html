@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Film Toevoegen/Wijzigen - SabriFlex Admin</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-logo">
+                <a href="index.html" class="logo">SabriFlex</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="films.html">Films</a></li>
+                <li><a href="admin.html">Film Beheer</a></li>
+                <li><a href="#" id="logout-link">Uitloggen</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="admin-container">
+        <div class="film-detail content-wrapper">
+            <h2 id="form-title">Film Toevoegen</h2>
+            <form id="film-form" class="details-grid">
+                <div class="detail-item">
+                    <label for="titel" class="detail-item h3">Titel</label>
+                    <input type="text" id="titel" name="titel" class="search-box input" required>
+                </div>
+
+                <div class="detail-item">
+                    <label for="genre" class="detail-item h3">Genre</label>
+                    <input type="text" id="genre" name="genre" class="search-box input" required>
+                </div>
+
+                <div class="detail-item">
+                    <label for="jaar" class="detail-item h3">Jaar</label>
+                    <input type="number" id="jaar" name="jaar" class="search-box input" min="1900" max="2100" required>
+                </div>
+
+                <div class="detail-item">
+                    <label for="duur" class="detail-item h3">Duur (minuten)</label>
+                    <input type="number" id="duur" name="duur" class="search-box input" min="1" required>
+                </div>
+
+                <div class="detail-item form-group-full">
+                    <label for="beschrijving" class="detail-item h3">Beschrijving</label>
+                    <textarea id="beschrijving" name="beschrijving" rows="4" class="search-box input" required></textarea>
+                </div>
+
+                <div class="detail-item">
+                    <label for="regisseur" class="detail-item h3">Regisseur</label>
+                    <input type="text" id="regisseur" name="regisseur" class="search-box input" required>
+                </div>
+
+                <div class="detail-item">
+                    <label for="poster" class="detail-item h3">Poster URL</label>
+                    <input type="url" id="poster" name="poster" class="search-box input">
+                </div>
+
+                <div class="detail-item form-group-full" style="display: flex; justify-content: flex-end; gap: 1rem;">
+                    <a href="admin.html" class="add-film-button" style="background-color: #333;">Annuleren</a>
+                    <button type="submit" class="add-film-button">Opslaan</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>Email: info@sabriflex.be</p>
+                <p>Tel: +32 123 45 67 89</p>
+            </div>
+    
+            <div class="footer-section">
+                <h3>Volg ons</h3>
+                <p><a href="https://www.facebook.com/people/Sabri-Dhidah/pfbid02G1cTrbw9fvbjwVK9fJ9YzRS5H4RLYub9rDJUKrUMBtKyQHNNVq2fjqJFntT1jTtl/">Facebook</a></p>
+                <p><a href="https://www.instagram.com/">Instagram</a></p>
+                <p><a href="https://x.com/__x?mx=2">X</a></p>
+            </div>
+    
+            <div class="footer-section">
+                <h3>Over ons</h3>
+                <p>Privacy Policy</p>
+                <p>Algemene voorwaarden</p>
+                <p>FAQ</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 SabriFlex - Alle rechten voorbehouden</p>
+        </div>
+    </footer>
+
+    <script>
+    // Uitloggen
+    document.getElementById('logout-link').addEventListener('click', function(e) {
+        e.preventDefault();
+        window.location.href = 'management.html';
+    });
+
+    // Controleer of we een bestaande film bewerken of een nieuwe toevoegen
+    document.addEventListener('DOMContentLoaded', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const filmId = urlParams.get('id');
+
+        if (filmId) {
+            // Bewerk bestaande film
+            document.getElementById('form-title').textContent = 'Film'
+        }})
+    

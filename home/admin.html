@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - SabriFlex</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-logo">
+                <a href="index.html" class="logo">SabriFlex</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="films.html">Films</a></li>
+                <li><a href="nieuw.html">Nieuw</a></li>
+                <li><a href="admin.html">Admin</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="admin-container">
+        <div class="film-detail content-wrapper">
+            <h2>Admin Login</h2>
+            <form id="admin-login-form" class="details-grid">
+                <div class="detail-item form-group-full">
+                    <label for="username" class="detail-item h3">Gebruikersnaam</label>
+                    <input type="text" id="username" name="username" class="search-box input" required>
+                </div>
+                <div class="detail-item form-group-full">
+                    <label for="password" class="detail-item h3">Wachtwoord</label>
+                    <input type="password" id="password" name="password" class="search-box input" required>
+                </div>
+                <div class="detail-item form-group-full">
+                    <button type="submit" class="add-film-button">Inloggen</button>
+                </div>
+                <div id="login-error" class="detail-item form-group-full" style="color: #e50914; text-align: center;"></div>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>Email: info@sabriflex.be</p>
+                <p>Tel: +32 123 45 67 89</p>
+            </div>
+    
+            <div class="footer-section">
+                <h3>Volg ons</h3>
+                <p><a href="https://www.facebook.com/people/Sabri-Dhidah/pfbid02G1cTrbw9fvbjwVK9fJ9YzRS5H4RLYub9rDJUKrUMBtKyQHNNVq2fjqJFntT1jTtl/">Facebook</a></p>
+                <p><a href="https://www.instagram.com/">Instagram</a></p>
+                <p><a href="https://x.com/__x?mx=2">X</a></p>
+            </div>
+    
+            <div class="footer-section">
+                <h3>Over ons</h3>
+                <p>Privacy Policy</p>
+                <p>Algemene voorwaarden</p>
+                <p>FAQ</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 SabriFlex - Alle rechten voorbehouden</p>
+        </div>
+    </footer>
+
+    <script>
+    document.getElementById('admin-login-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        const errorDiv = document.getElementById('login-error');
+
+        // Simple login check (replace with actual backend authentication)
+        if (username === 'Sabri.dh' && password === '1234') {
+            window.location.href = 'management.html';
+        } else {
+            errorDiv.textContent = 'Ongeldige gebruikersnaam of wachtwoord';
+        }
+    });
+    </script>
+</body>
+</html>

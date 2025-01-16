@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Films Beheren - SabriFlex Admin</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-logo">
+                <a href="index.html" class="logo">SabriFlex</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="films.html">Films</a></li>
+                <li><a href="#" id="logout-link">Uitloggen</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="admin-container">
+        <div class="admin-header">
+            <h2>Film Beheer</h2>
+            <div class="search-box">
+                <input type="text" id="search-films" placeholder="Zoek films...">
+                <a href="formulier.html" class="add-film-button">+ Nieuwe Film</a>
+            </div>
+        </div>
+
+        <table class="films-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Titel</th>
+                    <th>Genre</th>
+                    <th>Jaar</th>
+                    <th>Acties</th>
+                </tr>
+            </thead>
+            <tbody id="films-list">
+                <tr>
+                    <td>1</td>
+                    <td>Oppenheimer</td>
+                    <td>Drama, Historisch</td>
+                    <td>2023</td>
+                    <td class="action-buttons">
+                        <button onclick="editFilm(1)">Wijzigen</button>
+                        <button onclick="deleteFilm(1)">Verwijderen</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Barbie</td>
+                    <td>Komedie, Avontuur</td>
+                    <td>2023</td>
+                    <td class="action-buttons">
+                        <button onclick="editFilm(2)">Wijzigen</button>
+                        <button onclick="deleteFilm(2)">Verwijderen</button>
+                    </td>
+                </tr>
+                <!-- Meer films kunnen hier dynamisch worden toegevoegd -->
+            </tbody>
+        </table>
+
+        <div class="admin-footer">
+            <p>Totaal aantal films: <span id="total-films">2</span></p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>Email: info@sabriflex.be</p>
+                <p>Tel: +32 123 45 67 89</p>
+            </div>
+    
+            <div class="footer-section">
+                <h3>Volg ons</h3>
+                <p><a href="https://www.facebook.com/people/Sabri-Dhidah/pfbid02G1cTrbw9fvbjwVK9fJ9YzRS5H4RLYub9rDJUKrUMBtKyQHNNVq2fjqJFntT1jTtl/">Facebook</a></p>
+                <p><a href="https://www.instagram.com/">Instagram</a></p>
+                <p><a href="https://x.com/__x?mx=2">X</a></p>
+            </div>
+    
+            <div class="footer-section">
+                <h3>Over ons</h3>
+                <p>Privacy Policy</p>
+                <p>Algemene voorwaarden</p>
+                <p>FAQ</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 SabriFlex - Alle rechten voorbehouden</p>
+        </div>
+    </footer>
+
+    <script>
+    // Zoekfunctionaliteit
+    document.getElementById('search-films').addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase();
+        const rows = document.querySelectorAll('#films-list tr');
+        
+        rows.forEach(row => {
+            const title = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
+            row.style.display = title.includes(searchTerm) ? '' : 'none';
+        });
+    });
+
+    // Uitloggen
+    document.getElementById('logout-link').addEventListener('click', function(e) {
+        e.preventDefault();
+        window.location.href = 'admin.html';
+    });
+
+    // Placeholder functies voor bewerken en verwijderen
+    function editFilm(id) {
+        window.location.href = `formulier.html?id=${id}`;
+    }
+
+    function deleteFilm(id) {
+        if(confirm('Weet je zeker dat je deze film wilt verwijderen?')) {
+            // Hier zou normaal een backend-aanroep komen om de film te verwijderen
+            const row = document.querySelector(`#films-list tr:nth-child(${id})`);
+            row.remove();
+            updateTotalFilms();
+        }
+    }
+
+    function updateTotalFilms() {
+        const totalFilms = document.querySelectorAll('#films-list tr').length;
+        document.getElementById('total-films').textContent = totalFilms;
+    }
+    </script>
+</body>
+</html>
